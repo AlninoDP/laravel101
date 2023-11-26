@@ -1,11 +1,12 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 
 Route::get('/', function () {
-    return view('home',[
-        'title' => 'Home'
+    return view('home', [
+        'title'=> 'Home',
     ]);
 });
 
@@ -17,7 +18,8 @@ Route::get('/about', function() {
 
  Route::get('/post', function() {
     return view('post', [
-        'title' => 'Post'
+        'title' => 'Blog',
+        'post' => Post::getAllPost()
     ]);
  });
 
