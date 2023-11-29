@@ -16,6 +16,8 @@ td {
 } 
 
 </style>
+<div class="row">
+    <div class="col">
 <table style="text-align:center;">
     <thead>
         <tr>
@@ -38,4 +40,12 @@ td {
         @endforeach
     </tbody>
 </table>
+</div>
+<div class="col">
+    <h2>Test</h2>
+    <label for="txtNim">Masukan Nim:</label>
+    <input type="text" name="nim" id="txtNim">
+    <input type="submit" value="Cari">
+</div>
+</div>
 @endsection
