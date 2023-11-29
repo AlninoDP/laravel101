@@ -12,6 +12,8 @@ class CreateDataMahasiswaTable extends Migration
             $table->string('nim')->primary();
             $table->string('nama');
             $table->string('kota_asal');
+            // Add other columns if needed
+
             $table->timestamps();
         });
     }
@@ -21,3 +23,4 @@ class CreateDataMahasiswaTable extends Migration
         Schema::dropIfExists('data_mahasiswa');
     }
 }
+

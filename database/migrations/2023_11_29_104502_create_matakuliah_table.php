@@ -11,7 +11,8 @@ class CreateMatakuliahTable extends Migration
         Schema::create('matakuliah', function (Blueprint $table) {
             $table->string('kode_matkul')->primary();
             $table->string('nama_matkul');
-            $table->integer('semester');
+            $table->integer('semester'); 
+
             $table->timestamps();
         });
     }
@@ -21,3 +22,4 @@ class CreateMatakuliahTable extends Migration
         Schema::dropIfExists('matakuliah');
     }
 }
+
