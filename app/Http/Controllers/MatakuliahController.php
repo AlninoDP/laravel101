@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 class MatakuliahController extends Controller
 {
     public function index(){
-        $matakuliahObj = MataKuliah::all();
-
-    // TODO RETURN VIEW TO MATKUL
+    $matakuliahObj = MataKuliah::all();
+    return $matakuliahObj;
 
     }
 }

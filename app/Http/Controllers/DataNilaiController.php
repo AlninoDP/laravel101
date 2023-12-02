@@ -9,9 +9,8 @@ class DataNilaiController extends Controller
 {
     public function index () {
         $nilaiObj = DataNilai::all();
-        $title = 'Data Mahasiswa';
 
-        return view('data_nilai/data_nilai_page', compact('nilaiObj', 'title'));
+        return $nilaiObj;
     }
 
 }

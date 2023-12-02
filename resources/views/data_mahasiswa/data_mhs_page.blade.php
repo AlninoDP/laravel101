@@ -43,10 +43,24 @@
         </table>
     </div>
     <div class="col">
-        <h2>Test</h2>
-        <label for="txtNim">Masukan Nim:</label>
-        <input type="text" name="nim" id="txtNim">
-        <input type="submit" value="Cari">
+        <h2>Data Mahasiswa</h2>
+        <thead>
+            <th>Nim</th>
+            <th>Nama</th>
+            <th>Kota Asal</th>
+        </thead>
+        <tbody>
+            @foreach ($mhsObj as $$dataMhs)
+            <tr>
+                <td> {{ $dataMhs->nim }}</td>
+                <td>{{ $dataMhs->nama }}</td>
+                <td>{{ $dataMhs->kota_asal }}</td>
+            </tr>
+            @endforeach
+
+        </tbody>
+
+
     </div>
 </div>
 @endsection
