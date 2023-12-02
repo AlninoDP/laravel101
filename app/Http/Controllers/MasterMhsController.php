@@ -21,7 +21,7 @@ class MasterMhsController extends Controller
         $dataNilai = $dataNilaiController->index();
         $matakuliah = $matakuliahController->index();
 
-        return view('data_mhs/data_mhs_page', compact('dataMahasiswa', 'dataNilai','matakuliah','title'));
+        return view('data_mahasiswa/data_mhs_page', compact('dataMahasiswa', 'dataNilai','matakuliah','title'));
         
     }
 }
