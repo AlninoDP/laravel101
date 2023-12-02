@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\DataNilaiController;
 use App\Models\Post;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MahasiswaController;
+use Illuminate\Support\Facades\Route; 
 
 Route::get('/', function () {
     return view('home', [
@@ -23,4 +23,4 @@ Route::get('/about', function() {
     ]);
  });
 
-Route::get('/data_mhs', [MahasiswaController::class,'showDataMhs']);
+Route::get('/data_nilai', [DataNilaiController::class,'index']);
