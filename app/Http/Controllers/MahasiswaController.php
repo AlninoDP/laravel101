@@ -10,12 +10,11 @@ use App\Http\Controllers\Controller;
 
 class MahasiswaController extends Controller
 {
-    public function showDataMhs () {
-        $mahasiswas = DataMahasiswa::all();
-        $nilais = DataNilai::all();
-        $matakuliahs = MataKuliah::all();
+    public function index () {
+        $mhsObj = DataMahasiswa::all();
         $title = 'Data Mahasiswa';
 
-        return view('/data_mhs', compact('mahasiswas', 'nilais', 'matakuliahs','title'));
+        // TODO MAKE RETURN VIEW DATA MAHASISWA
+        // return view('/data_mhs_page', compact('mhsObj','title'));
     }
 }
