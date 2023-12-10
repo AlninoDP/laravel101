@@ -1,90 +1,56 @@
 @extends('main_layout.main')
 
 @section('header')
-<h1>Halaman Data Nilai Mahasiswa</h1>
+<h1>Data Akademik</h1>
 @endsection
 
 @section('body')
 <style>
-    table,
-    th,
-    td {
-        border: 2px solid black;
-    }
-
-    td {
-        font-size: 14px;
+    .feature-icon {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 0.75rem;
     }
 </style>
 
-<div class="row">
-    <div class="col mb-4">
-        <h2>Data Nilai</h2>
-        <a href="/report/data_nilai/create">Tambah</a>
-        <table style="text-align:center;">
-            <thead>
-                <tr>
-                    <th>Nim</th>
-                    <th>Nama Mahasiswa</th>
-                    <th>Kode Matkul</th>
-                    <th>Mata Kuliah</th>
-                    <th>Nilai</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($dataNilai as $nilai_data)
-                <tr>
-                    <td>{{ $nilai_data->nim }}</td>
-                    <td>{{ $nilai_data->mahasiswa->nama }}</td>
-                    <td>{{ $nilai_data->kode_matkul }}</td>
-                    <td>{{ $nilai_data->matakuliah->nama_matkul }}</td>
-                    <td style="font-weight: bold; color: {{ $nilai_data->nilai < 70 ? 'red' : 'black' }}">{{
-                        $nilai_data->nilai }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        
+{{-- Koleksi Data --}}
+<div class="container px-4 py-5" id="featured-3">
+    <h2 class="pb-2 border-bottom">Koleksi Data</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="feature col">
+        <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+            <img src="/images/mhs_icon.png" alt="mahasiswa" style="width: 3rem; height: 3rem;" >
+        </div>
+        <h3 class="fs-2 text-body-emphasis">Data Mahasiswa</h3>
+        <p>Kumpulan biodata - biodata dari mahasiswa, termasuk didalamnya no induk mahasiswa, nama mahasiswa dan kota asal mahasiswa.</p>
+        <a href="/report/data_mahasiswa" class="icon-link">
+          Lihat Detail
+          <img src="/images/chevron-right.png" alt="right-arrow" style="width: 1.5rem; height: 1.5rem;" >
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+            <img src="/images/matkul_icon.png" alt="matakuliah" style="width: 3rem; height: 3rem;" >
+        </div>
+        <h3 class="fs-2 text-body-emphasis">Data Matakuliah</h3>
+        <p>Berisi kumpulan data dari matakuliah mahasiswa, termasuk didalamnya kode mata kuliah, nama mata kuliah, dan terdapat di semester berapa mata kuliah tersebut.</p>
+        <a href="/report/matakuliah" class="icon-link">
+          Lihat Detail
+          <img src="/images/chevron-right.png" alt="right-arrow" style="width: 1.5rem; height: 1.5rem;" >
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+            <img src="/images/grade_icon.png" alt="matakuliah" style="width: 3rem; height: 3rem;" >
+        </div>
+        <h3 class="fs-2 text-body-emphasis">Data Nilai</h3>
+        <p>Berisi data - data nilai mahasiswa, di dalamnya terdapat nama mahasiswa, nama matakuliah dan nilainya serta apakah nilainya diatas standar atau tidak.</p>
+        <a href="/report/data_nilai" class="icon-link">
+          Lihat Detail
+          <img src="/images/chevron-right.png" alt="right-arrow" style="width: 1.5rem; height: 1.5rem;" >
+        </a>
+      </div>
     </div>
-    <div class="col mb-4">
-        <h2>Matakuliah</h2>
-        <a href="/report/matakuliah/create">Tambah</a>
-        <table style="text-align: center;">
-            <thead>
-                <tr>
-                    <th>Kode Matkul</th>
-                    <th>Nama Matkul</th>
-                    <th>Semester</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($mataKuliah as $matkul)
-                <tr>
-                    <td>{{ $matkul->kode_matkul }}</td>
-                    <td>{{ $matkul->nama_matkul }}</td>
-                    <td>{{ $matkul->semester }}</td>
-                    @endforeach
-                </tr>
-            </tbody>
-        </table>
-        <h2>Data Mahasiswa</h2>
-        <a href="/report/data_mhs/create">Tambah</a>
-        <table style="text-align:center; width: 400px">
-            <tr>
-                <th>Nim</th>
-                <th>Nama</th>
-                <th>Kota Asal</th>
-            </tr>
-            <tbody>
-                @foreach ($dataMhs as $data_mhs)
-                <tr>
-                    <td> {{ $data_mhs->nim }}</td>
-                    <td>{{ $data_mhs->nama }}</td>
-                    <td>{{ $data_mhs->kota_asal }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div> 
+  </div>
+  
 @endsection
