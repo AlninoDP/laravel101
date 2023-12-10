@@ -10,8 +10,9 @@ class MataKuliahController extends Controller
      
     public function index()
     {
-       $mataKuliah =  MataKuliah::all();
-       return $mataKuliah;
+       $title = 'Data Matakuliah';
+       $matakuliah = MataKuliah::all();
+       return view('/data_akademik/matakuliah/matakuliah_page', ['title'=>$title, 'matakuliah'=>$matakuliah]);
     }
  
     public function create()

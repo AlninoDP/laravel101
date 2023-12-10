@@ -10,8 +10,9 @@ class DataNilaiController extends Controller
      
     public function index()
     {
-        $data_nilai =  DataNilai::all();
-        return $data_nilai;
+        $title = 'Data Nilai';
+        $data_nilai = DataNilai::all();
+        return view('/data_akademik/data_nilai/data_nilai_page', ['title' => $title,'data_nilai'=> $data_nilai]); 
     }
 
      

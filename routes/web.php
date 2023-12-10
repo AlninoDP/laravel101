@@ -20,14 +20,17 @@ Route::get('/about', function() {
  });
 
  Route::get('/post', function() {
-    return view('post', [
+    return view('post', [ 
         'title' => 'Blog',
         'post' => Post::getAllPost()
     ]);
  });
 
-Route::resource('/report',ReportController::class);
-Route::resource('/report/data_mhs',DataMhsController::class);
+ Route::get('/report', function() {
+    return view('data_akademik.data_akademik', ['title' => 'Data Akademik']);
+ });
+ 
+Route::resource('/report/data_mahasiswa', DataMhsController::class);
 Route::resource('/report/matakuliah',MataKuliahController::class);
 Route::resource('/report/data_nilai',DataNilaiController::class);
-// Route::resource('/report/data_mhs',DataMhsController::class);
+ 

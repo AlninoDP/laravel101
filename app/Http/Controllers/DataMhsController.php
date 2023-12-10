@@ -9,9 +9,10 @@ class DataMhsController extends Controller
 {
     
     public function index()
-    {
-        $data_mhs = DataMahasiswa::all(); 
-        return $data_mhs;
+    {   
+        $title = 'Data Mahasiswa';
+        $data_mahasiswa = DataMahasiswa::all();
+        return view('/data_akademik.data_mahasiswa.data_mahasiswa_page', ['title' => $title, 'data_mahasiswa'=> $data_mahasiswa]);
     }
 
      
