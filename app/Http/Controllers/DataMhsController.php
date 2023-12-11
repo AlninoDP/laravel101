@@ -24,7 +24,13 @@ class DataMhsController extends Controller
     
     public function store(Request $request)
     {
-        //
+        $validasi = $request->validate([
+            'nim' => 'required|max:11',
+            'nama' => 'required|max:100',
+            'kota_asal' => 'required', 
+        ]);
+        DataMahasiswa::create($validasi);
+        return redirect('/report/data_mahasiswa')->with('succes', 'Data Mahasiswa Berhasil Ditambahkan');
     }
  
     public function show($id)

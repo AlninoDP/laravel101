@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DataMahasiswa extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $table = 'data_mahasiswa'; /// To specify what table assosciated with the model
     protected $primaryKey = 'nim'; /// set the primary key to nim
     public $incrementing = false; /// set the primary key incrementing or not

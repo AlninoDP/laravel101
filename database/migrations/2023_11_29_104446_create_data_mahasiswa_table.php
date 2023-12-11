@@ -14,7 +14,7 @@ class CreateDataMahasiswaTable extends Migration
             $table->string('kota_asal');
             // Add other columns if needed
 
-            $table->timestamps();
+             
         });
     }
 
