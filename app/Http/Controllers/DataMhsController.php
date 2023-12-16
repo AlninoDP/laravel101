@@ -18,7 +18,8 @@ class DataMhsController extends Controller
      
     public function create()
     {
-        return view('/data_akademik/data_mahasiswa/create_data_mahasiswa');
+        $title = 'Tambah Mahasiswa';
+        return view('/data_akademik/data_mahasiswa/create_data_mahasiswa', ['title' => $title]);
     }
 
     

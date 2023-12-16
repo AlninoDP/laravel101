@@ -1,7 +1,7 @@
 @extends('main_layout.main')
 
 @section('header')
-    <h1>Data Mahasiswa</h1>
+<h1>Data Mahasiswa</h1>
 @endsection
 
 @section('body')
@@ -10,7 +10,7 @@
 <style>
     table,
     th,
-    td { 
+    td {
         padding: 3px;
         text-align: center;
         border: 2px solid black;
@@ -20,43 +20,39 @@
         font-size: 14px;
     }
 
-    .crud-row {
-
-    }
-    
-    
+    .crud-row {}
 </style>
 
 
 <h2 style="text-align: center">Data Mahasiswa</h2>
 {{-- @if(session('success'))
 <div class="alert alert-success">
-   <p> {{ session('success') }}</p>
+    <p> {{ session('success') }}</p>
 </div>
 @endif --}}
 
 <div class="d-flex justify-content-center mb-2">
-   
-     <table>
+
+    <table>
         <tr>
-            <td> 
-                <a href="/report/data_mahasiswa/create" class="icon-link mx-2 ">      
-                    <img src="/images/add-person.png" alt="add-person" style="width: 1.7rem; height: 1.7rem;" >
+            <td>
+                <a href="/report/data_mahasiswa/create" class="icon-link mx-2 ">
+                    <img src="/images/add-person.png" alt="add-person" style="width: 1.7rem; height: 1.7rem;">
                 </a>
             </td>
             <td>
-                <a href="/#" class="icon-link mx-2"> 
-                    <img src="/images/update.png" alt="right-arrow" style="width: 1.5rem; height: 1.5rem;" >
+                <a href="/#" class="icon-link mx-2">
+                    <img src="/images/update.png" alt="right-arrow" style="width: 1.5rem; height: 1.5rem;">
                 </a>
             </td>
             <td>
-                <a href="/#" class="icon-link mx-2"> 
-                    <img src="/images/delete.png" alt="right-arrow" style="width: 1.5rem; height: 1.5rem;" >
-                </a>  
+                <a href="/#" class="icon-link mx-2">
+                    <img src="/images/delete.png" alt="right-arrow" style="width: 1.5rem; height: 1.5rem;">
+                </a>
             </td>
         </tr>
-     </table>    
-</div>         
+    </table>
+</div>
 
 <table class="table mx-auto" style="text-align:center;width: 400px">
     <tr>
