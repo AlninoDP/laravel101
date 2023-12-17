@@ -31,8 +31,8 @@
 </div>
 @endif --}}
 
+{{-- CRUD BUTTON --}}
 <div class="d-flex justify-content-center mb-2">
-
     <table>
         <tr>
             <td>
@@ -40,32 +40,36 @@
                     <img src="/images/add-person.png" alt="add-person" style="width: 1.7rem; height: 1.7rem;">
                 </a>
             </td>
-            <td>
-                <a href="/#" class="icon-link mx-2">
-                    <img src="/images/update.png" alt="right-arrow" style="width: 1.5rem; height: 1.5rem;">
-                </a>
-            </td>
-            <td>
-                <a href="/#" class="icon-link mx-2">
-                    <img src="/images/delete.png" alt="right-arrow" style="width: 1.5rem; height: 1.5rem;">
-                </a>
-            </td>
         </tr>
     </table>
 </div>
 
-<table class="table mx-auto" style="text-align:center;width: 400px">
-    <tr>
-        <th>Nim</th>
-        <th>Nama</th>
-        <th>Kota Asal</th>
-    </tr>
+{{-- Data Table --}}
+<table class=" mx-auto " style="text-align:center;width: 500px">
+    <thead class="thead-dark">
+        <tr>
+            <th>Nim</th>
+            <th>Nama</th>
+            <th>Kota Asal</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
     <tbody>
         @foreach ($data_mahasiswa as $data_mhs)
         <tr>
             <td> {{ $data_mhs->nim }}</td>
             <td>{{ $data_mhs->nama }}</td>
             <td>{{ $data_mhs->kota_asal }}</td>
+            <td>
+                <div class="row"></div>
+                <a href="/#" class="icon-link mx-2">
+                    <img src="/images/update.png" alt="update" style="width: 1.5rem; height: 1.5rem;">
+                </a>
+                <a href="/report/data_mahasiswa/{{ $data_mhs->nim }}" class="icon-link mx-2">
+                    {{-- <a href="{{ route('data_mahasiswa.show', $data_mhs->nim) }}" class="icon-link mx-2"> --}}
+                        <img src="/images/goto.png" alt="goto_profile" style="width: 1.5rem; height: 1.5rem;">
+                    </a>
+            </td>
         </tr>
         @endforeach
     </tbody>

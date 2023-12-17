@@ -36,7 +36,10 @@ class DataMhsController extends Controller
  
     public function show($id)
     {
-        //
+        
+        $data_mahasiswa = DataMahasiswa::find($id);
+        $title = "$data_mahasiswa->nim | $data_mahasiswa->nama "  ;
+        return view('/data_akademik/data_mahasiswa/show_data_mahasiswa', ['data_mahasiswa' => $data_mahasiswa, 'title' => $title]);
     }
 
     
