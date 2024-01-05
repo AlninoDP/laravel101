@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\DataMahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
 
 class DataMhsController extends Controller
 {
@@ -31,15 +33,14 @@ class DataMhsController extends Controller
             'kota_asal' => 'required', 
         ]);
         DataMahasiswa::create($validasi);
-        return redirect('/report/data_mahasiswa')->with('succes', 'Data Mahasiswa Berhasil Ditambahkan');
+        return redirect('/report/data_mahasiswa')->with('success', 'Data Mahasiswa Berhasil Ditambahkan');
     }
  
-    public function show($id)
-    {
-        
-        $data_mahasiswa = DataMahasiswa::find($id);
+    public function show(DataMahasiswa $data_mahasiswa)
+    { 
+        // dd($data_mahasiswa); 
         $title = "$data_mahasiswa->nim | $data_mahasiswa->nama "  ;
-        return view('/data_akademik/data_mahasiswa/show_data_mahasiswa', ['data_mahasiswa' => $data_mahasiswa, 'title' => $title]);
+        return view('/data_akademik/data_mahasiswa/show_data_mahasiswa', ['dataMhs' => $data_mahasiswa, 'title' => $title]);
     }
 
     
@@ -66,8 +67,30 @@ class DataMhsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DataMahasiswa $data_mahasiswa)
     {
-        //
+        try {
+            // Attempt to delete the record
+            DB::table('data_mahasiswa')->where('nim', $data_mahasiswa)->delete();
+
+            // Additional logic if the deletion is successful
+                $data_mahasiswa->delete();
+              return redirect('/report/data_mahasiswa');
+        } catch (QueryException $e) {
+            // Check if the exception is due to a foreign key constraint violation
+            if ($e->errorInfo[1] == 1451) {
+                // Handle the foreign key constraint violation
+                return redirect()->back()->withErrors(['error' => 'Cannot delete the record due to foreign key constraint']);
+            } else {
+                // Handle other database exceptions
+                return redirect()->back()->withErrors(['error' => 'An error occurred while deleting the record']);
+              
+            }
+        }
+
+
+
+        // $data_mahasiswa->delete();
+        // return redirect('/report/data_mahasiswa');
     }
 }

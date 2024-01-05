@@ -56,9 +56,9 @@
     <tbody>
 
         <tr>
-            <td> {{ $data_mahasiswa->nim }}</td>
-            <td>{{ $data_mahasiswa->nama }}</td>
-            <td>{{ $data_mahasiswa->kota_asal }}</td>
+            <td> {{ $dataMhs->nim }}</td>
+            <td>{{ $dataMhs->nama }}</td>
+            <td>{{ $dataMhs->kota_asal }}</td>
 
         </tr>
 

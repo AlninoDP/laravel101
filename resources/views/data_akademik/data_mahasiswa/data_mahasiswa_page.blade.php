@@ -25,11 +25,18 @@
 
 
 <h2 style="text-align: center">Data Mahasiswa</h2>
-{{-- @if(session('success'))
-<div class="alert alert-success">
-    <p> {{ session('success') }}</p>
+{{-- ALERT DIV --}}
+@if($errors->any())
+<div class="alert alert-danger">
+    {{ $errors->first() }}
 </div>
-@endif --}}
+@endif
+
+@if(session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
 
 {{-- CRUD BUTTON --}}
 <div class="d-flex justify-content-center mb-2">
@@ -62,16 +69,27 @@
             <td>{{ $data_mhs->kota_asal }}</td>
             <td>
                 <div class="row"></div>
-                <a href="/#" class="icon-link mx-2">
+                <a href="/report/data_mahasiswa/{{ $data_mhs->nim }}/edit" class="icon-link mx-2">
                     <img src="/images/update.png" alt="update" style="width: 1.5rem; height: 1.5rem;">
                 </a>
                 <a href="/report/data_mahasiswa/{{ $data_mhs->nim }}" class="icon-link mx-2">
                     {{-- <a href="{{ route('data_mahasiswa.show', $data_mhs->nim) }}" class="icon-link mx-2"> --}}
                         <img src="/images/goto.png" alt="goto_profile" style="width: 1.5rem; height: 1.5rem;">
                     </a>
+                    <form method="POST" action="/report/data_mahasiswa/{{ $data_mhs->nim }}" onsubmit="confirmDelete()">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Delete</button>
+                    </form>
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
+
+<script>
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete this record?');
+    }
+</script>
 @endsection
