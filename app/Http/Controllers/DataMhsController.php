@@ -36,45 +36,41 @@ class DataMhsController extends Controller
         return redirect('/report/data_mahasiswa')->with('success', 'Data Mahasiswa Berhasil Ditambahkan');
     }
  
-    public function show(DataMahasiswa $data_mahasiswa)
+    public function show(DataMahasiswa $dataMahasiswa)
     { 
-        // dd($data_mahasiswa); 
-        $title = "$data_mahasiswa->nim | $data_mahasiswa->nama "  ;
-        return view('/data_akademik/data_mahasiswa/show_data_mahasiswa', ['dataMhs' => $data_mahasiswa, 'title' => $title]);
+        // dd($dataMahasiswa); 
+        $title = "$dataMahasiswa->nim | $dataMahasiswa->nama "  ;
+        return view('/data_akademik/data_mahasiswa/show_data_mahasiswa', ['data_mahasiswa' => $dataMahasiswa, 'title' => $title]);
     }
 
     
-    public function edit($id)
+    public function edit(DataMahasiswa $dataMahasiswa)
     {
-        //
+        $title = "$dataMahasiswa->nim | $dataMahasiswa->nama "  ;
+        return view('/data_akademik/data_mahasiswa/edit_data_mahasiswa', ['data_mahasiswa' => $dataMahasiswa, 'title' => $title]);
+    }
+ 
+    public function update(Request $request, DataMahasiswa $dataMahasiswa)
+    {
+        $validasi = $request->validate([
+            'nim' => 'required|max:11',
+            'nama' => 'required|max:100',
+            'kota_asal' => 'required', 
+        ]);
+
+        $dataMahasiswa->update($validasi);
+
+        return redirect('/report/data_mahasiswa')->with('success', 'Data Mahasiswa Berhasil Di Update');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(DataMahasiswa $data_mahasiswa)
+    
+    public function destroy(DataMahasiswa $dataMahasiswa)
     {
         try {
             // Attempt to delete the record
-            DB::table('data_mahasiswa')->where('nim', $data_mahasiswa)->delete();
-
+            DB::table('data_mahasiswa')->where('nim', $dataMahasiswa)->delete();
             // Additional logic if the deletion is successful
-                $data_mahasiswa->delete();
+                $dataMahasiswa->delete();
               return redirect('/report/data_mahasiswa');
         } catch (QueryException $e) {
             // Check if the exception is due to a foreign key constraint violation
@@ -87,9 +83,7 @@ class DataMhsController extends Controller
               
             }
         }
-
-
-
+ 
         // $data_mahasiswa->delete();
         // return redirect('/report/data_mahasiswa');
     }

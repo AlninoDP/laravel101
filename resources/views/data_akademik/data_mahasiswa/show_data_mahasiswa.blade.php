@@ -25,11 +25,6 @@
 
 
 <h2 style="text-align: center">Data Mahasiswa</h2>
-{{-- @if(session('success'))
-<div class="alert alert-success">
-    <p> {{ session('success') }}</p>
-</div>
-@endif --}}
 
 {{-- CRUD BUTTON --}}
 <div class="d-flex justify-content-center mb-2">
@@ -56,9 +51,9 @@
     <tbody>
 
         <tr>
-            <td> {{ $dataMhs->nim }}</td>
-            <td>{{ $dataMhs->nama }}</td>
-            <td>{{ $dataMhs->kota_asal }}</td>
+            <td> {{ $data_mahasiswa->nim }}</td>
+            <td>{{ $data_mahasiswa->nama }}</td>
+            <td>{{ $data_mahasiswa->kota_asal }}</td>
 
         </tr>
 
