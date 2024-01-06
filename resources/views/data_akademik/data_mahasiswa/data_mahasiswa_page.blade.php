@@ -76,7 +76,8 @@
                     {{-- <a href="{{ route('data_mahasiswa.show', $data_mhs->nim) }}" class="icon-link mx-2"> --}}
                         <img src="/images/goto.png" alt="goto_profile" style="width: 1.5rem; height: 1.5rem;">
                     </a>
-                    <form method="POST" action="/report/data_mahasiswa/{{ $data_mhs->nim }}" onsubmit="confirmDelete()">
+                    <form method="POST" action="/report/data_mahasiswa/{{ $data_mhs->nim }}"
+                        onsubmit="return confirmDelete()">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Delete</button>
