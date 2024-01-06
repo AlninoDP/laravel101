@@ -4,27 +4,101 @@
 <h1>Data Mahasiswa</h1>
 @endsection
 
-@section('body')
-
-
+@section('style')
 <style>
-    table,
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    .alert {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .d-flex {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+    }
+
     th,
     td {
-        padding: 3px;
+        padding: 12px;
         text-align: center;
-        border: 2px solid black;
+        border: 1px solid #ddd;
     }
 
-    td {
-        font-size: 14px;
+    th {
+        background-color: #343a40;
+        color: #fff;
     }
 
-    .crud-row {}
+    tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .icon-link img {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .icon-link {
+        margin: 0 5px;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .icon-link button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #007bff;
+    }
+
+    .icon-link button:hover {
+        text-decoration: underline;
+    }
+
+    .aksi-btn {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
 </style>
+@endsection
 
+@section('body')
+<h2>Data Mahasiswa</h2>
 
-<h2 style="text-align: center">Data Mahasiswa</h2>
 {{-- ALERT DIV --}}
 @if($errors->any())
 <div class="alert alert-danger">
@@ -39,21 +113,15 @@
 @endif
 
 {{-- CRUD BUTTON --}}
-<div class="d-flex justify-content-center mb-2">
-    <table>
-        <tr>
-            <td>
-                <a href="/report/data_mahasiswa/create" class="icon-link mx-2 ">
-                    <img src="/images/add-person.png" alt="add-person" style="width: 1.7rem; height: 1.7rem;">
-                </a>
-            </td>
-        </tr>
-    </table>
+<div class="d-flex">
+    <a href="/report/data_mahasiswa/create" class="icon-link">
+        <img src="/images/add-person.png" alt="add-person">
+    </a>
 </div>
 
 {{-- Data Table --}}
-<table class=" mx-auto " style="text-align:center;width: 500px">
-    <thead class="thead-dark">
+<table>
+    <thead>
         <tr>
             <th>Nim</th>
             <th>Nama</th>
@@ -64,17 +132,16 @@
     <tbody>
         @foreach ($data_mahasiswa as $data_mhs)
         <tr>
-            <td> {{ $data_mhs->nim }}</td>
+            <td>{{ $data_mhs->nim }}</td>
             <td>{{ $data_mhs->nama }}</td>
             <td>{{ $data_mhs->kota_asal }}</td>
-            <td>
-                <div class="row"></div>
-                <a href="/report/data_mahasiswa/{{ $data_mhs->nim }}/edit" class="icon-link mx-2">
-                    <img src="/images/update.png" alt="update" style="width: 1.5rem; height: 1.5rem;">
-                </a>
-                <a href="/report/data_mahasiswa/{{ $data_mhs->nim }}" class="icon-link mx-2">
-                    {{-- <a href="{{ route('data_mahasiswa.show', $data_mhs->nim) }}" class="icon-link mx-2"> --}}
-                        <img src="/images/goto.png" alt="goto_profile" style="width: 1.5rem; height: 1.5rem;">
+            <td class="icon-link">
+                <div class="aksi-btn">
+                    <a href="/report/data_mahasiswa/{{ $data_mhs->nim }}" class="icon-link">
+                        <button type="submit">Show</button>
+                    </a>
+                    <a href="/report/data_mahasiswa/{{ $data_mhs->nim }}/edit">
+                        <button type="submit">Edit</button>
                     </a>
                     <form method="POST" action="/report/data_mahasiswa/{{ $data_mhs->nim }}"
                         onsubmit="return confirmDelete()">
@@ -82,6 +149,7 @@
                         @method('DELETE')
                         <button type="submit">Delete</button>
                     </form>
+                </div>
             </td>
         </tr>
         @endforeach
@@ -90,7 +158,7 @@
 
 <script>
     function confirmDelete() {
-        return confirm('Are you sure you want to delete this record?');
-    }
+            return confirm('Are you sure you want to delete this record?');
+        }
 </script>
 @endsection
